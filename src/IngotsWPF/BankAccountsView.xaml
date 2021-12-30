@@ -1,0 +1,196 @@
+﻿<rxui:ReactiveUserControl x:Class="IngotsWPF.BankAccountsView"
+                          x:TypeArguments="ingots:BankAccountsViewModel"
+                          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                          xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                          xmlns:local="clr-namespace:IngotsWPF"
+                          xmlns:rxui="http://reactiveui.net"
+                          xmlns:ingots="clr-namespace:Ingots;assembly=Ingots"
+                          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                          xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+                          mc:Ignorable="d"
+                          d:DesignHeight="750"
+                          d:DesignWidth="1200">
+    <Grid Background="{DynamicResource MaterialDesignPaper}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="400"
+                              MaxWidth="700"
+                              Width="500" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="300"
+                           MinHeight="300"
+                           MaxHeight="500" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <materialDesign:Card Margin="5"
+                             Padding="5"
+                             Grid.RowSpan="3">
+            <DockPanel>
+                <materialDesign:ColorZone Mode="PrimaryMid"
+                                          Padding="5"
+                                          DockPanel.Dock="Top">
+                    <TextBlock Text="ACCOUNTS"
+                               Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
+                               HorizontalAlignment="Center" />
+                </materialDesign:ColorZone>
+
+                <UniformGrid Rows="1"
+                             HorizontalAlignment="Right"
+                             DockPanel.Dock="Bottom">
+                    <Button x:Name="ButtonAddAccount"
+                            Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
+                            ToolTip="ADD ACCOUNT"
+                            Margin="2">
+                        <materialDesign:PackIcon Kind="PlusThick" />
+                    </Button>
+                    <Button x:Name="ButtonEditAccount"
+                            Style="{DynamicResource MaterialDesignFloatingActionMiniLightButton}"
+                            ToolTip="EDIT ACCOUNT"
+                            Margin="2">
+                        <materialDesign:PackIcon Kind="Pencil" />
+                    </Button>
+                    <Button x:Name="ButtonDeleteAccount"
+                            Style="{DynamicResource MaterialDesignFloatingActionMiniAccentButton}"
+                            ToolTip="DELETE ACCOUNT"
+                            Margin="2">
+                        <materialDesign:PackIcon Kind="Delete" />
+                    </Button>
+                </UniformGrid>
+
+                <ListBox Margin="5"
+                         d:ItemsSource="{d:SampleData ItemCount=5}" />
+            </DockPanel>
+        </materialDesign:Card>
+        <materialDesign:Card Margin="5"
+                             Padding="5"
+                             Grid.Column="2">
+            <DockPanel>
+                <materialDesign:ColorZone Mode="PrimaryMid"
+                                          Padding="5"
+                                          DockPanel.Dock="Top">
+                    <TextBlock x:Name="TextBlockAccount"
+                               Text="ACCOUNT"
+                               Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
+                               HorizontalAlignment="Center" />
+                </materialDesign:ColorZone>
+                <lvc:CartesianChart x:Name="CartesianChart"
+                                    LegendPosition="Bottom"
+                                    Margin="5" />
+            </DockPanel>
+        </materialDesign:Card>
+        <materialDesign:Card Margin="5"
+                             Padding="5"
+                             Grid.Column="2"
+                             Grid.Row="2">
+            <DockPanel>
+                <materialDesign:ColorZone Mode="PrimaryMid"
+                                          Padding="5"
+                                          DockPanel.Dock="Top">
+                    <TextBlock Text="OPERATIONS"
+                               Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
+                               HorizontalAlignment="Center" />
+                </materialDesign:ColorZone>
+
+                <DockPanel DockPanel.Dock="Bottom">
+                    <TextBox x:Name="TextBoxSearch"
+                             Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+                             Margin="5"
+                             Width="200"
+                             materialDesign:TextFieldAssist.HasClearButton="True"
+                             materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                             materialDesign:TextFieldAssist.LeadingIcon="Magnify"
+                             materialDesign:TextFieldAssist.RippleOnFocusEnabled="True"
+                             materialDesign:TextFieldAssist.NewSpecHighlightingEnabled="True"
+                             materialDesign:HintAssist.Hint="Search"
+                             VerticalContentAlignment="Center"
+                             DockPanel.Dock="Left" />
+                    <UniformGrid Rows="1"
+                                 DockPanel.Dock="Left">
+                        <Button x:Name="ButtonFirstPage"
+                                Style="{DynamicResource MaterialDesignFlatButton}">
+                            <materialDesign:PackIcon Kind="PreviousTitle" />
+                        </Button>
+                        <RepeatButton x:Name="ButtonPreviousPage"
+                                      Style="{DynamicResource MaterialDesignFlatButton}">
+                            <materialDesign:PackIcon Kind="SkipPrevious" />
+                        </RepeatButton>
+                        <TextBlock VerticalAlignment="Center"
+                                   HorizontalAlignment="Center">
+                            <Run x:Name="RunCurrent" />
+                            <Run Text="/" />
+                            <Run x:Name="RunTotal" />
+                        </TextBlock>
+                        <RepeatButton x:Name="ButtonNextPage"
+                                      Style="{DynamicResource MaterialDesignFlatButton}">
+                            <materialDesign:PackIcon Kind="SkipNext" />
+                        </RepeatButton>
+                        <Button x:Name="ButtonLastPage"
+                                Style="{DynamicResource MaterialDesignFlatButton}">
+                            <materialDesign:PackIcon Kind="NextTitle" />
+                        </Button>
+                    </UniformGrid>
+
+                    <UniformGrid Rows="1"
+                                 HorizontalAlignment="Right"
+                                 DockPanel.Dock="Right">
+                        <Button x:Name="ButtonAddTransaction"
+                                Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
+                                ToolTip="ADD TRANSACTION"
+                                Margin="2">
+                            <materialDesign:PackIcon Kind="PlusThick" />
+                        </Button>
+                        <Button x:Name="ButtonAddTransfer"
+                                Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
+                                ToolTip="ADD TRANSFER"
+                                Margin="2">
+                            <materialDesign:PackIcon Kind="ShuffleVariant" />
+                        </Button>
+                        <Button x:Name="ButtonEditOperation"
+                                Style="{DynamicResource MaterialDesignFloatingActionMiniLightButton}"
+                                ToolTip="EDIT OPERATION"
+                                Margin="2">
+                            <materialDesign:PackIcon Kind="Pencil" />
+                        </Button>
+                        <Button x:Name="ButtonDeleteOperation"
+                                Style="{DynamicResource MaterialDesignFloatingActionMiniAccentButton}"
+                                ToolTip="DELETE OPERATION"
+                                Margin="2">
+                            <materialDesign:PackIcon Kind="Delete" />
+                        </Button>
+                        <Button x:Name="ButtonImportCsv"
+                                Style="{DynamicResource MaterialDesignFloatingActionMiniLightButton}"
+                                ToolTip="IMPORT FROM CSV"
+                                Margin="2">
+                            <materialDesign:PackIcon Kind="FileCsv" />
+                        </Button>
+                    </UniformGrid>
+
+                    <Rectangle />
+                </DockPanel>
+
+                <ListView DockPanel.Dock="Top" />
+            </DockPanel>
+        </materialDesign:Card>
+
+        <GridSplitter Margin="5 15"
+                      Width="2"
+                      ResizeBehavior="PreviousAndNext"
+                      ResizeDirection="Columns"
+                      Grid.Column="1"
+                      Grid.RowSpan="3" />
+
+        <GridSplitter Margin="15 5"
+                      Height="2"
+                      HorizontalAlignment="Stretch"
+                      ResizeBehavior="PreviousAndNext"
+                      ResizeDirection="Rows"
+                      Grid.Column="2"
+                      Grid.Row="1" />
+    </Grid>
+</rxui:ReactiveUserControl>
