@@ -1,0 +1,37 @@
+﻿[
+  {
+    "bank": "Fintro",
+    "dateIndex": 2,
+    "valueIndex": 3,
+    "descriptionIndex": 10,
+    "accountIndex": 5,
+    "targetIndex": 7,
+    "dateCulture": "FR-fr",
+    "delimiter": ";",
+    "thousandSeparator": "."
+  },
+  {
+    "bank": "Rabobank",
+    "dateIndex": 1,
+    "valueIndex": 3,
+    "valueCulture": "FR-fr",
+    "accountIndex": -1,
+    "targetIndex": 5,
+    "descriptionIndex": 7,
+    "delimiter": ";",
+    "thousandSeparator": "."
+  },
+  {
+    "bank": "Keytrade",
+    "dateIndex": 2,
+    "dateCulture": "FR-fr",
+    "valueIndex": 5,
+    "valueCulture": "FR-fr",
+    "accountIndex": -1,
+    "targetIndex": -1,
+    "descriptionIndex": 4,
+    "delimiter": ";",
+    "thousandSeparator": ".",
+    "ParseTargetInCommunication": true
+  }
+]

@@ -11,4 +11,7 @@ public class Account
     public double StartValue { get; set; }
     public bool IsDeleted { get; set; }
     public AccountKind Kind { get; set; }
+
+    public override string ToString()
+        => $"{Bank} - {Iban} : {Description}";
 }
